@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+					 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Theater</title>
+</head>
+<body>
+<div layout:fragment="content">
+	<h1> List All Theater </h1>
+	<hr />
+
+	<table border="1" class="table table-striped">
+		<tr>
+			<th>Theater id</th>
+			<th>Name</th>
+			<th>Address </th>
+			<th>Manager</th>
+			<th>PhoneNumber</th	>
+			<th>&nbsp;</th>	
+		</tr>
+		<tr th:each="item : ${theater}">
+			<td th:utext="*{item.theaterid}"></td>
+			<td th:utext="*{item.Name}"></td>
+			<td th:utext="*{item.Address}"></td>
+			<td th:utext="*{item.Manager}"></td>
+			<td th:utext="*{item.phoneNumber}"></td>
+			<td>
+				<a th:href="@{'/theater/edit/' + ${item.theaterid}}" class="btn btn-primary">Edit</a> |
+				<a th:href="@{'/theater/delete/' + ${item.theaterid}}" class="btn btn-primary">Delete</a>
+				
+			</td>
+		</tr>	
+	</table>
+	
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<title>Movie Current</title>
+<style type="text/css">
+.showFuture{ 
+ float: left;
+    width: 33.3%;
+    text-align: center;
+    display: inline-block;
+    resize: both;
+    overflow: auto;
+}
+.detail{
+text-align: center;
+}
+.movie{
+margin-top: 0px;
+padding: 10px;
+}
+</style>
+</head>
+<body>
+<h1>List Movie Current</h1>
+<hr />
+
+<div layout:fragment="content">
+	<div style="margin: 0px; padding: 0px;">
+		<div style="border-bottom: 2px double black;margin-top: 0px;text-align: center;">
+			<h2>Phim Sắp Chiếu</h2>
+		</div>
+		<div style="display: inline-block;background-color: beige;margin: 0px;width: 100%;">
+				<div th:each="item : ${movieUpcoming}" class="showFuture">
+					<div class="movie" style="background-color: beige;margin: 10px;border-bottom: 2px solid black;">
+						<img th:alt="${item.poster}"
+							th:src="@{'/getimage/' + ${item.movieid}}" width="200"
+							height="300">
+						<div class="detail">
+							<h2 th:text="${item.moviename}"></h2>
+							<a href=#><Button>Trailler</Button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+</div>
+
+
+
+</body>
+</html>

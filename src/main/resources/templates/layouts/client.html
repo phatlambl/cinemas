@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title th:text="${title}"></title>
+
+<link th:href="@{/css/navbarClient.css}" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<div class="container-fluid" style="background-color:  #b2cccc;background-image: url('https://wp.technologyreview.com/wp-content/uploads/2020/08/SA_spacedebris-daylight-web.jpg');background-size: cover; background-repeat: no-repeat;
+  background-attachment: fixed;">
+		<div class="container" style="border: 2px solid black;background-color: #ffffff;padding: 0px;">
+			 <head class="row" layout:fragment="header" >				 
+				 <div sec:authorize="hasRole('ADMIN')" style="display: #fff4e6; ">
+				 	<a  th:href="@{/admin}" style="text-decoration: none;" class="btn btn-primary">Trang chủ Admin</a>||
+				 	<a  th:href="@{/}" style="text-decoration: none;" class="btn btn-primary">Trang chủ Webstie</a>
+				 	
+				 </div>
+				 <div style="text-align: center;background-color: white-space;margin: 0px;display: block;"> <h1>Cinemas Space</h1>
+				        <p>Hân Hạnh phục vụ quý khách!</p> </div>
+				
+				<div class="jumbotron text-center bg-img " style="margin:0px;padding: 0px;">
+				       
+				    </div>
+				
+				     <div class="topnav">
+				        <div >
+				              <a th:class="${title=='Trang chủ'} ? active : '' " th:href="@{/}" style="text-decoration: none;">Trang chủ</a>
+				                <a th:class="${title=='Phim Đang Chiếu'} ? active : '' " th:href="@{/movies/phimdangchieu}" style="text-decoration: none;">Phim đang chiếu</a>
+				                <a th:class="${title=='Phim Sắp Chiếu'} ? active : '' " th:href="@{/movies/phimsapchieu}" style="text-decoration: none;">Phim sắp chiếu</a>
+				                <a th:class="${title=='Lịch Chiếu Theo Rạp'} ? active : '' " th:href="@{/schedules/selectTheater}" style="text-decoration: none;">Lịch chiếu theo rạp</a>
+				                <a th:class="${title=='Lịch Chiếu Theo Phim'} ? active : '' " th:href="@{/schedules/selectFilm}" style="text-decoration: none;">Lịch chiếu theo phim</a> 		             
+
+						
+                                       
+					   <div class="topnav-right" >				
+							<div style="float: left;height: 53px;">
+								<div class="modal fade" id="modalLoginForm" tabindex="-1"
+									role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document" style="display: flex;justify-content: center;" >
+										<div class="modal-content" style="width: 400px;">
+											<form th:action="@{/login}" method="post">
+												<div class="modal-header text-center">
+													<h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body mx-3">
+				
+													<div class="form-group">
+														<label for="username">Username:</label> <input type="text"
+															name="username" class="form-control" />
+													</div>
+													<div class="form-group">
+														<label for="password">Password:</label> <input type="password"
+															name="password" class="form-control" />
+													</div>
+				
+				
+												</div>
+												<div class="modal-footer d-flex justify-content-center">
+													<button class="btn btn-default" type="submit">Login</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+				
+								<div class="text-center">
+									<a th:if="${#request.userPrincipal == null}" href="" class="btn btn-default btn-rounded mb-4"
+										data-toggle="modal" data-target="#modalLoginForm"> Đăng Nhập</a>
+								</div>
+							</div>
+						<div style="float: left;">	<a th:class="${title=='Đăng Ký'} ? active : '' " th:if="${#request.userPrincipal == null}" th:href="@{/users/register}" style="text-decoration: none;">Đăng ký</a></div>
+						<div style="float: left;"> <form th:action="@{/logout}" method="post"> <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}" style="text-decoration: none;" >Hi  <span th:utext="${#request.userPrincipal.name}"></span>, Logout</a></form></div>
+						                  
+				                </div>            
+				        </div>
+				      </div>
+				      
+				      
+				      
+
+
+			</head>
+	       
+	        <section layout:fragment="content">        
+	      
+	        </section>
+	         <div style="clear: both;"></div>
+	         <footer layout:fragment="footer"  style="display: flex;justify-content: center;border-top: 5px solid black;padding: 0px;width: 100%;background-color: #fff4e6;">       
+	       
+	            
+	            <div style="width: 100%;">
+	           	 <hr size="20">
+		             
+		            <div style="text-align: center;	">
+		            	
+		            	<P>Copyright by Lam Thanh Phat( Dino Lam)</P><br>
+		            	<p>Công ty TNHH ABC </p>
+		            	<p>Địa chỉ: Tp Hồ Chí Minh </p>
+		            	<p>Hotline: 1900 xxxx </p>            	
+		 
+		            </div>
+		         
+	            </div>
+	           
+	           
+	        </footer>
+			
+			
+		</div>       
+   </div>
+
+</body>
+</html>

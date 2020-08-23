@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>List All Room</title>
+</head>
+<body>
+
+<div layout:fragment="content"><h1>List All Room</h1>
+<hr />
+	<table border="1" class="table table-striped">
+		<thead>	
+			<tr>
+			<th scope="col">Room Id</th>
+			<th scope="col">Number Room</th>
+			<th scope="col">Movie Theater</th>
+			<th scope="col">&nbsp;</th>	
+		</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${room}">
+				<td th:text="${item.roomid}"></td>
+				<td th:text="${item.numberRoom}"></td>
+				<td th:text="${item.theater.Name}"></td>
+				<td>
+					<a th:href="@{'/theater/room/edit/' + ${item.roomid}}" class="btn btn-primary">Edit</a>||
+					<a th:href="@{'/theater/room/delete/' + ${item.roomid}}" class="btn btn-secondary">Delete</a>		
+				</td>	
+			</tr>		
+		</tbody>
+</table>
+
+</div>
+
+
+</body>
+</html>

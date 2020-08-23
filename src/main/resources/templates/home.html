@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  	 layout:decorate="~{layouts/client.html}">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<link th:href="@{/css/home.css}" rel="stylesheet" />
+<link th:href="@{/css/navbarClient.css}" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/flickity.pkgd.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
+
+<style type="text/css">
+.background{ 
+background-image: url("https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fstartswithabang%2Ffiles%2F2017%2F10%2FTiny_bit_of_U.jpg");
+}
+
+
+</style>
+
+</head>
+<body>
+
+ 		<div th:if="${message != null}">
+				<h3 th:text="${message}"></h3>
+			</div>
+
+	<div layout:fragment="content" >
+		<div class="background" style="text-align: center; margin-top: 50px;width: 100%;margin-bottom: 50px;background-color:  #99ccff;">
+			<div style="border-bottom: 5px solid black;border-top: 5px solid black;background-color: #fff4e6;">
+				<h3>Phim Đang Chiếu</h3>
+			</div>
+			<div class="carouselOfImages" style="margin-top: 20px;">
+				<div th:each="item : ${movieCurrent}" class="carouselImage"
+					style="background-size: cover;">
+					<a th:href="@{'/movies/detail/' + ${item.movieid}}"><img
+						th:data-tab="${item.movieid}"
+						th:src="@{'/getimage/' + ${item.movieid}}" width="180"
+						height="250"></a>
+				</div>
+			</div>
+		</div>
+		<div class="background" style="text-align: center; margin-top: 50px;width: 100%;margin-bottom: 50px;background-color:   #99ccff;">
+			<div style="border-bottom: 5px solid black;border-top: 5px solid black;background-color: #fff4e6;">
+				<h3>Phim Sắp Chiếu</h3>
+			</div>
+			<div class="carouselOfImages" >
+				<div th:each="item : ${movieUpcoming}" class="carouselImage"
+					style="background-size: cover;">
+					<a th:href="@{'/movies/detail/' + ${item.movieid}}"><img th:data-tab="${item.movieid}"
+						th:src="@{'/getimage/' + ${item.movieid}}" width="180"
+						height="250"></a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div></div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

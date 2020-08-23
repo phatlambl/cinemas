@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.Theater a{
+	display: block;
+    font-size: 20px;
+    color: black;
+    width: 250px;    
+    line-height: 43px;
+    text-align: center;
+    background: white;
+    border: 2px solid #121c26;
+    margin-right: 12px;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+a:hover {
+	cursor: pointer;
+	background-color: green;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<div  layout:fragment="content"   >
+	<div style="background-color: beige;display: inline-block;width: 100%;">
+		<div style="border-bottom: 2px double black;margin-top: 10px;text-align: center;">
+			<h2>Chọn Rạp Phim</h2>
+		</div>
+			<div style="margin-top: 20px;display: inline-block;width: 100%;padding: 0px;" >
+				<div th:each="item : ${theater}" class="Theater" style="display: inline-block;width: 300px;width: 33%;float: left;">
+					<div style="display: flex;justify-content: center;" >
+						<a th:href="@{'/schedules/scheduleByTheater/' + ${item.theaterid}}" th:text="${item.name}"></a>
+					</div>			
+				</div>
+			</div>
+	
+	</div>
+			
+			
+	</div>
+</body>
+</html>

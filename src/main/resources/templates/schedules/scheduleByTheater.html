@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.list-film a{
+align-content: center;
+background-color: beige;
+color: black;
+}
+.list-film a:hover{
+background-color: green;
+color: white;
+
+}
+</style>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="schedule">
+		<div style="border-bottom: 2px double black;margin-top: 10px;text-align: center;">
+			<h2>Lịch chiếu theo rạp</h2>
+		</div>
+		<div class="showtime" style="min-height: 500px;display: inline-block;width: 100%;">			
+				<div th:each="item : ${list}" class="listshow" style="display:block;border-bottom: 2px solid black;margin-top:20px;">					
+					<div class="info" style="width: 30%;float: left;text-align: center;" >
+						<img th:alt="${item.movie.poster}" th:src="@{'/getimage/' + ${item.movie.movieid}}" style="width: 200px;height: 300px;">
+						<h4 th:text="${item.movie.moviename}"></h4>						
+						
+					</div>
+					<div  style="width: 70%;float: right; ">
+						<div class="list-film" style="margin: 20px;float: left;display:inline-block;" >
+							<div th:each="listfilm : ${item.schedule}" style="margin: 20px;float: left;"><a style="border: 2px solid black;padding: 10px;margin: 10px;" th:href="@{'/getseat/' + ${listfilm.scheduleid}}" th:text="${listfilm.time}"></a></div>
+						
+						</div>				
+					</div>
+					<div style="clear: both;"></div>					
+				</div>
+		</div>
+	</div>
+	
+	
+	</div>
+	
+	
+	
+</body>
+</html>

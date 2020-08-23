@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+					 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" >
+
+<h1>List All User</h1>
+<hr />
+	
+	<table class="table table-striped">
+		<tr>
+			<th>User ID</th>
+			<th>UserName</th>
+			<th>client name</th>
+			<th>Email</th>
+			<th>Phone Number</th>
+			
+		</tr>
+		<tr th:each="item : ${users}">
+			<td th:text="${item.userid}"></td>
+			<td th:text="${item.username}"></td>
+			<td th:text="${item.clientname}"></td>
+			<td th:text="${item.email}"></td>
+			<td th:text="${item.phonenumber}"></td>
+		
+		</tr>
+	</table>
+
+
+</div>
+
+
+
+</body>
+</html>

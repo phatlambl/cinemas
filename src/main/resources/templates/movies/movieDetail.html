@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<title ></title>
+<style type="text/css">
+button:hover {
+cursor: pointer;
+background-color: green;
+color: white;
+}
+</style>
+
+</head>
+<body>
+
+<div  layout:fragment="content" > 	
+	<div style="margin: 30px;" >
+		
+			<div style="width: 30%; float: left;">
+				<img th:src="@{'/getimage/' + ${movieDetail.movieid}}" style="width: 250px; height: 320px;">
+			
+			</div>	
+			<div style="width: 70%; float: left; display: block;">
+				<div class="movieName">
+					<h1 th:text="${movieDetail.moviename}">
+					</h1>
+				</div>
+				<hr>
+				<div class="movieDirector" >
+					<label>Đạo diễn: </label>
+					<div th:text="${movieDetail.director}" style="display: inline-block;" ></div>
+				</div>
+				<div class="movieActor">
+					<label>Diễn viên: </label>
+					<div th:text="${movieDetail.actor}" style="display: inline-block;"></div>
+				</div>
+				<div class="movieType">
+					<label>Thể loại:</label>
+					<div th:text="${movieDetail.type}" style="display: inline-block;"></div>
+				</div>
+				<div class="moviePremiere">
+					<label>Ngày khởi chiếu:</label>
+					<div th:text="${movieDetail.premiere}" style="display: inline-block;"></div>
+				</div>
+				<div>
+					<a th:href="@{'/schedules/scheduleByFilm/' + ${movieDetail.movieid}}"><button>Mua Vé</button></a>
+				</div>			
+			</div>
+			
+			<div style="clear: both;">
+				<hr>
+				<div th:text="${movieDetail.introduction}"></div>
+				
+			
+			</div>	
+			 
+			
+			<div th:if="${movieDetail.trailer != null}" style="display: flex; align-items: center;justify-content: center;"><iframe width="420" height="315" th:src="@{'https://www.youtube.com/embed/' + ${movieDetail.trailer}}" frameborder="0" allowfullscreen></iframe></div>
+	
+	</div>
+
+
+
+
+
+
+
+</div>
+	
+
+
+
+</body>
+</html>

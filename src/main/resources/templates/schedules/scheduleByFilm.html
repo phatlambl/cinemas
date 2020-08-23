@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+
+<style type="text/css">
+.list-film a{
+align-content: center;
+background-color: beige;
+color: black;
+}
+.list-film a:hover{
+background-color: green;
+color: white;
+
+}
+
+</style>
+</head>
+<body>
+	
+<div layout:fragment="content">
+	<div >
+		<div style="margin: 30px;display: inline-block;" >		
+				<div style="width: 30%; float: left;">
+					<img th:src="@{'/getimage/' + ${movie.movieid}}" style="width: 250px; height: 320px;">
+				
+				</div>	
+				<div style="width: 70%; float: left; display: block;">
+					<div class="movieName">
+						<h1 th:text="${movie.moviename}">
+						</h1>
+					</div>
+					<hr>
+					<div class="movieDirector" >
+						<label>Đạo diễn: </label>
+						<div th:text="${movie.director}" style="display: inline-block;" ></div>
+					</div>
+					<div class="movieActor">
+						<label>Diễn viên: </label>
+						<div th:text="${movie.actor}" style="display: inline-block;"></div>
+					</div>
+					<div class="movieType">
+						<label>Thể loại:</label>
+						<div th:text="${movie.type}" style="display: inline-block;"></div>
+					</div>
+					<div class="moviePremiere">
+						<label>Ngày khởi chiếu:</label>
+						<div th:text="${movie.premiere}" style="display: inline-block;"></div>
+					</div>							
+				</div>				
+				<div style="clear: both;">
+					<hr>
+					<div th:text="${movie.introduction}"></div>
+				</div>	
+		</div>	
+		<div style="border-top: 2px solid black;padding: 10px;text-align: center;width: 100%;background-color: beige; ">
+		<h2>Lịch Chiếu Theo Phim Tại Các Rạp</h2>
+		</div>
+		<div class="schedule" style="min-height: 400px;width: 100%;border-top: 2px solid black;">
+			<div class="showtime" style="display: inline-block;width: 100%;">
+					<div th:each="item : ${list}" class="listshow" style="display: inline-block;width: 100%;border-bottom: 2px solid black;">
+						<div class="info" style="width: 30%; float:left; border: solid 1px;text-align: center;margin: 10px;background-color: rgb(144, 160, 186);" >
+							<h4 th:text="${item.theater.name}"></h4>						
+							<p th:text="${item.theater.address}"></p>
+						</div>
+						<div  style="width: 60%; float:right;margin: 10px;">
+							<div class="list-film" >
+								<div th:each="listfilm : ${item.schedule}" style="margin: 10px;padding: 10px;float: left;"><a style="border: 2px solid black;padding: 10px;margin: 10px;" th:href="@{'/getseat/' + ${listfilm.scheduleid}}" th:text="${listfilm.time}"></a></div>
+							
+							</div>				
+						</div>
+					</div>
+				</div>
+		</div>
+		
+	</div>
+			
+	
+</div>
+hello cac ban tre
+</body>
+</html>

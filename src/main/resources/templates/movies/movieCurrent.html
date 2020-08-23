@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<title>Movie Current</title>
+<style type="text/css">
+.moviecurrent {
+  float: left;
+    width: 33%;
+    text-align: center;
+    display: inline-block;
+    resize: both;
+    overflow: auto;
+    
+}
+.detail{
+text-align: center;
+}
+.movie{
+margin-top: 0px;
+padding: 10px;
+}
+button:hover {
+	cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+
+
+<div layout:fragment="content"  >
+		<div style="display: inline-block;">
+		<div style="border-bottom: 2px double black;margin-top: 10px;text-align: center;">
+			<h2>Phim Đang Chiếu</h2>
+		</div>
+		<div style="display: inline-block;background-color: beige;">
+			<div th:each="item :${movieCurrent}" class="moviecurrent" >		
+				<div class="movie" style="background-color: beige;margin: 10px;border-bottom: 2px solid black;">			
+					<a th:href="@{'/movies/detail/' + ${item.movieid}}"><img th:src="@{'/getimage/' + ${item.movieid}}" width="200" height="300"></a>
+					<div class="detail">
+						<h2 th:text="${item.moviename}"></h2>	
+						<a th:href="@{'/schedules/scheduleByFilm/' +${item.movieid}}"><button>Mua ve</button></a>					
+					</div>							
+				</div>	
+			
+			</div>	
+		</div>
+						
+		</div>
+</div>
+
+
+
+
+</body>
+</html>

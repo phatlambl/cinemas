@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  	 layout:decorate="~{layouts/client.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.movie{
+float: left;
+width: 33%;
+background-color: beige;
+}
+h4{
+margin: 0px;
+padding: 0px;
+}
+a:hover {
+	cursor: pointer;
+}
+button:hover {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<div  layout:fragment="content" >
+	<div style="background-color: white; display: inline-block;">
+			<div style="border-bottom: 2px double black;margin-top: 10px;text-align: center;">
+				<h2>Chọn Phim Cần Xem</h2>
+			</div>
+			<div style="display: inline-block;background-color: beige;">
+				<div th:each="item : ${movies}" class="movie" style="text-align: center;margin-top: 20px;">			
+			
+					<div><a th:href="@{'/movies/detail/' + ${item.movieid}}"><img th:src="@{'/getimage/' + ${item.movieid}}" width="200" height="300"></a></div>
+					
+					<div  style="display: inline-block;" >
+						<h4 th:text="${item.moviename}"></h4>
+						<a th:href="@{'/schedules/scheduleByFilm/' + ${item.movieid}}" ><button style="margin: 20px;"> Danh sach rap chieu</button></a>
+					</div>
+		
+				</div>
+			</div>
+			
+			
+	</div>
+		
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>List All Schedules</title>
+</head>
+<body>
+<div layout:fragment="content">
+		<div style="margin: 20px;text-align: center;">
+			<table border="1" class="table table-striped">
+			<tr>
+				<th>Schedules Id</th>
+				<th>Movie</th>
+				<th>Room</th>
+				<th>Theater</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>&nbsp;</th>	
+			</tr>
+			<tr th:each="item : ${Schedules}">
+				<td th:utext="*{item.scheduleid}"></td>
+				<td th:utext="*{item.movie.moviename}"></td>
+				<td th:utext="*{item.room.numberRoom}"></td>
+				<td th:utext="*{item.room.theater.Name}"></td>
+				<td th:utext="*{item.date}"></td>
+				<td th:utext="*{item.time}"></td>
+				<td>
+					<a th:href="@{'/schedules/edit/' + ${item.scheduleid}}" class="btn btn-primary">Edit</a>||
+					<a th:href="@{'/shcedules/delete/' + ${item.scheduleid}}" class="btn btn-secondary">Delete</a>
+				</td>	
+			</tr>
+		</table>
+		<ul class="nav nav-pills">
+			<li class="nava-item" th:each="i : ${#numbers.sequence(0,Schedules.totalPages-1)}">
+				<a th:text="${i}" th:href="@{/schedules/list(page=${i})}" class="nav-link " th:classappend="${CurrentPage}==${i}?'active':''"></a>
+			
+			</li>			
+		</ul>
+			
+		</div>
+		
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="UTF-8">
+<title>Movies</title>
+</head>
+<body>
+<div layout:fragment="content" class="offset-2 col-8">
+
+		<div th:if="${message != null}">
+			<h3 th:text="${message}"></h3>
+		</div>
+
+		<form th:action="@{/movies/saveOrUpdate}" method="post" th:object="${movieDto}" encType="multipart/form-data">
+			<div th:if="*{movieid > 0}" class="form-group">
+					<label for="movieid">Movie ID: </label>
+					<input th:field="*{movieid}" placeholder="Movie ID" class="form-control">
+			</div>
+			<div class="form-group">
+					<label for="moviename">Name Movie:</label>
+				 	<input type="text" th:field="*{moviename}" placeholder="Name movie" class="form-control" />
+			</div>
+			<div class="form-group">
+					<label for="poster">Poster: </label>
+					<input type="file" th:field="*{poster}" multiple required class="form-control" />	
+		
+			</div>
+			<div class="form-group">
+					<label for="trailer">Trailer:</label>
+				 	<input type="url" th:field="*{trailer}" placeholder="youtube trailer" class="form-control"/>
+			
+			</div>
+			<div class="form-group">
+					<label for="type">Type:</label>
+				 	<select  th:field="*{type}"  class="form-control">
+				 		<option value="Hành động"> Hành động</option>
+				 		<option value="Tâm lí, tình cảm"> Tâm lí, tình cảm</option>
+				 		<option value="Hoạt Hình">Hoạt Hình</option>
+				 		<option value="Kinh dị">Kinh dị</option>				 	
+				 	</select>
+			
+			</div>			
+			<div class="form-group">
+					<label for="director">Director :</label>
+				 	<input type="text" th:field="*{director}" placeholder="director" class="form-control"/>
+			
+			</div>
+			<div class="form-group">
+					<label for="actor">actor : </label>
+					<input type="text" th:field="*{actor}" placeholder="actor" class="form-control"/>
+		
+			</div>
+			<div class="form-group">
+					<label for="introduction">Introduction:</label>
+				 	<textarea  th:field=*{introduction} placeholder="Introduction" class="form-control" rows="5"/></textarea>
+		
+			</div>			
+			<div class="form-group">
+					<label for="premiere">Premiere: </label>
+					<input type="text" th:field="*{premiere}" placeholder="Premiere dd/MM/yyyy" class="form-control"/>
+		
+			</div>
+			<div class="form-group">
+					<label for="end">Date End: </label>
+					<input type="text" th:field="*{end}" placeholder="Date End dd/MM/yyyy" class="form-control">
+			</div>
+				
+
+			
+			<input type="submit" value="Add" th:if="*{movieid <= 0}" class="btn btn-primary" /><br>
+			<input type="submit" value="Update" th:if="*{movieid > 0}" class="btn btn-primary"/><br>
+			
+			<a th:href="@{/movies/add}" class="btn btn-primary">New</a> |
+			<a th:href="@{/movies/list}" class="btn btn-secondary">List Movie</a>
+			
+			
+		</form>
+			
+	
+</div>
+
+
+
+</body>
+</html>

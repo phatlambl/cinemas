@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+	
+    <div class="container">
+        <head  layout:fragment="header">
+				<nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd;">
+					<a class="navbar-brand" th:href="@{/}">Trang chủ Website</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarNav" aria-controls="navbarNav"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav">							
+							 <li class="nav-item dropdown">
+						        <div class="nav-link dropdown-toggle" style="cursor: pointer;"  id="Schedule" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          Schedule
+						        </div>
+						        <div class="dropdown-menu" aria-labelledby="Schedule">
+						          <a class="dropdown-item" th:href="@{/schedules/add}">Add schedule</a>
+						          <a class="dropdown-item" th:href="@{/schedules/list}">List schedule</a>         
+						        </div>
+						      </li>    
+						      
+						       <li class="nav-item dropdown">
+						        <div class="nav-link dropdown-toggle" style="cursor: pointer;" id="Movie" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          Movie
+						        </div>
+						        <div class="dropdown-menu" aria-labelledby="Movie">
+						          <a class="dropdown-item" th:href="@{/movies/add}">Add movie</a>
+						          <a class="dropdown-item" th:href="@{/movies/list}">List movie</a>
+						          
+						        </div>
+						      </li>   
+						      
+						       <li class="nav-item dropdown">
+						        <div class="nav-link dropdown-toggle" style="cursor: pointer;" id="Room" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          Room
+						        </div>
+						        <div class="dropdown-menu" aria-labelledby="Room">
+						          <a class="dropdown-item" th:href="@{/theater/room/add}">Add Room</a>
+						          <a class="dropdown-item" th:href="@{/theater/room/list}">List Room</a>
+						          
+						        </div>
+						      </li>
+						      
+						       <li class="nav-item dropdown">
+						        <div class="nav-link dropdown-toggle" style="cursor: pointer;" id="Theater" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          Theater
+						        </div>
+						        <div class="dropdown-menu" aria-labelledby="Theater">
+						          <a class="dropdown-item" th:href="@{/theater/add}">Add theater</a>
+						          <a class="dropdown-item" th:href="@{/theater/list}">List theater</a>         
+						        </div>
+						      </li>
+						</ul>
+					</div>
+				</nav>
+
+		</head>
+        <section layout:fragment="content"></section>
+       
+        <footer layout:fragment="footer">
+            
+            <div>
+            <hr size="20">
+	             
+	            <div style="text-align: center;	">
+	            	
+	            	<P>Copyright by Lam Thanh Phat( Dino Lam)</P><br>
+	            	<p>Công ty TNHH ABC </p>
+	            	<p>Địa chỉ: Tp Hồ Chí Minh </p>
+	            	<p>Hotline: 1900 xxxx </p>            	
+	 
+	            </div>
+	         
+            </div>
+           
+           
+        </footer>
+    </div>
+
+
+</body>
+</html>

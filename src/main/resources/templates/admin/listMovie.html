@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Movies</title>
+
+</head>
+<body>
+<h1>List All Movies</h1>
+<hr />
+
+<div layout:fragment="content">
+		<table  class="table table-striped">
+			<thead>	
+				<tr>
+					<th scope="col">Movie Id</th>
+					<th scope="col">Name Movie</th>
+					<th scope="col">Poster</th>
+					<th scope="col">director </th>
+					<th scope="col">premiere</th>
+					<th scope="col">date end</th>
+					<th scope="col">&nbsp;</th>			
+				</tr>
+			</thead>
+		 <tbody>
+		 	<tr th:each="item : ${movies}">
+				<td th:text="${item.movieid}"></td>
+				<td th:text="${item.moviename}"></td>
+				<td>
+					<img th:alt="${item.poster}" th:src="@{'/getimage/' +${item.movieid}}" style="width:100px;height:200px;">
+				</td>
+				<td th:text="${item.director}"></td>
+				<td th:text="${item.premiere}"></td>	
+				<td th:text="${item.end}"></td>
+				<td>
+					<a th:href="@{'/movies/edit/' + ${item.movieid}}" class="btn btn-primary">Edit</a>|
+					<a th:href="@{'/movies/delete/' + ${item.movieid}}" class="btn btn-secondary">Delete</a>
+				</td>		
+			</tr>	 	
+		 
+		 </tbody>
+					
+		</table>
+			<hr/>
+		<ul class="nav nav-pills">
+			<li class="nava-item" th:each="i : ${#numbers.sequence(0,movies.totalPages-1)}">
+				<a th:text="${i}" th:href="@{/movies/list/(page=${i})}" class="nav-link " th:classappend="${CurrentPage}==${i}?'active':''"></a>
+			
+			</li>			
+		</ul>
+	
+		
+
+</div>
+
+
+</body>
+</html>
